@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Inventory from './components/Inventory';
-import StorageDebug from './StorageDebug';
 
 export default function App() {
   // Initialize clients from localStorage or empty array
@@ -152,9 +151,6 @@ export default function App() {
 
       {/* Inventory is now a separate component */}
       <Inventory />
-
-      {/* Storage debug panel (visible on the page for debugging persistence) */}
-      <StorageDebug />
     </div>
   );
 }
