@@ -73,7 +73,7 @@ export default function App() {
           rel="noopener noreferrer"
           className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 shadow-sm"
         >
-          📅 Book Appointment
+          📅 Schedule
         </a>
       </div>
 
