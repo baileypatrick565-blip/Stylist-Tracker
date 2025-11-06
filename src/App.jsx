@@ -1,8 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import Inventory from './components/Inventory';
-
-export default function App() {
-  // Initialize clients from localStorage or empty array
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
