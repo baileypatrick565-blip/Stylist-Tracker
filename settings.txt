@@ -1,0 +1,4 @@
+root: C:\Users\baile\OneDrive\Desktop\StylistTrackerApp_Local 
+path: C:\Program Files\nodejs 
+arch: 64 
+proxy: none
