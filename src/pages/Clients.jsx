@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Clients() {
   const [clients, setClients] = useState(() => {
@@ -63,12 +64,12 @@ export default function Clients() {
       <div className="max-w-lg mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-pink-700">👥 Client Management</h1>
-          <a
-            href="/"
+          <Link
+            to="/"
             className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
           >
             Back to Home
-          </a>
+          </Link>
         </div>
 
         <div className="bg-white p-4 rounded-2xl shadow">
