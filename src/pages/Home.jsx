@@ -16,6 +16,38 @@ export default function Home() {
     }
   }, []);
 
+  // Listen for inventory changes emitted from Inventory component (same-window)
+  useEffect(() => {
+    const onInventoryUpdated = (e) => {
+      try {
+        const low = e?.detail?.low;
+        if (typeof low === 'number') setLowCount(low);
+      } catch (err) {
+        // ignore
+      }
+    };
+
+    // Storage event for cross-tab changes
+    const onStorage = (e) => {
+      if (e.key === 'inventory') {
+        try {
+          const parsed = JSON.parse(e.newValue || '[]');
+          const low = parsed.filter(it => (Number(it.qty) || 0) <= 2).length;
+          setLowCount(low);
+        } catch (err) {
+          setLowCount(0);
+        }
+      }
+    };
+
+    window.addEventListener('inventoryUpdated', onInventoryUpdated);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener('inventoryUpdated', onInventoryUpdated);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, []);
+
   return (
     <div className="text-center mt-20">
       <h1 className="text-4xl font-bold text-pink-700 mb-8">💇 Stylist Tracker</h1>

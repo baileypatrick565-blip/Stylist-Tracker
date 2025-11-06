@@ -22,6 +22,11 @@ export default function Inventory() {
   useEffect(() => {
     try {
       localStorage.setItem('inventory', JSON.stringify(inventory));
+      // Notify other parts of the app that inventory changed (same-window)
+      try {
+        const low = inventory.filter(it => (Number(it.qty) || 0) <= 2).length;
+        window.dispatchEvent(new CustomEvent('inventoryUpdated', { detail: { low } }));
+      } catch (e) {}
     } catch (e) {}
   }, [inventory]);
 
