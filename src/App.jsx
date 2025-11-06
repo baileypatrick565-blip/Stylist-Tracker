@@ -11,7 +11,7 @@ export default function App() {
       return [];
     }
   });
-  const [newClient, setNewClient] = useState({ name: '', color: '', date: '' });
+  const [newClient, setNewClient] = useState({ name: '', color: '', phone: '' });
   const [editingIndex, setEditingIndex] = useState(-1);
 
   const addClient = () => {
@@ -91,9 +91,17 @@ export default function App() {
         />
         <input
           className="border p-2 w-full mb-2 rounded"
-          type="date"
-          value={newClient.date}
-          onChange={e => setNewClient({ ...newClient, date: e.target.value })}
+          type="tel"
+          placeholder="Phone (xxx-xxx-xxxx)"
+          value={newClient.phone}
+          onChange={e => {
+            const input = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            const formatted = input.length >= 10 
+              ? `${input.slice(0,3)}-${input.slice(3,6)}-${input.slice(6,10)}`
+              : input.replace(/(\d{3})(?=\d)/g, '$1-');
+            setNewClient({ ...newClient, phone: formatted });
+          }}
+          maxLength={12}
         />
         {editingIndex >= 0 ? (
           <div className="flex gap-2">
@@ -128,7 +136,7 @@ export default function App() {
               <div className="flex-1 flex justify-between mr-4">
                 <span>{client.name}</span>
                 <span className="text-sm text-gray-500">{client.color}</span>
-                <span className="text-sm text-gray-400">{client.date}</span>
+                <span className="text-sm text-gray-400">{client.phone}</span>
               </div>
               <div className="flex gap-2">
                 <button
